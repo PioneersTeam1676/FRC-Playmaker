@@ -1,27 +1,28 @@
-const canvas = document.getElementById('myCanvas');
+const canvas = document.getElementById('canvas');
+console.log(canvas);
 const ctx = canvas.getContext('2d');
-const toggleDrawButton = document.getElementById('toggleDraw');
+const toggleDrawButton = document.getElementById('paintbrush-img');
 
 let drawing = false;
-let isMouseDown = false;
 
 // Toggle drawing mode
 toggleDrawButton.addEventListener('click', () => {
     drawing = !drawing; // Toggle the drawing state
+    console.log(clicked);
+    //toggleDrawButton.textContent = drawing ? 'Stop Drawing' : 'Start Drawing'; // Update button text
 });
 
 // Draw on the canvas
-canvas.addEventListener('mousedown', (mouse) => {
+canvas.addEventListener('mousedown', (e) => {
     if (drawing) {
-        isMouseDown = true;
         ctx.beginPath(); // Start a new path
-        ctx.moveTo(mouse.offsetX, mouse.offsetY); // Move to the mouse position
+        ctx.moveTo(e.offsetX, e.offsetY); // Move to the mouse position
     }
 });
 
-canvas.addEventListener('mousemove', (mouse) => {
-    if (drawing && isMouseDown) { // Check if drawing mode is active and the mouse is down
-        ctx.lineTo(mouse.offsetX, mouse.offsetY); // Draw a line to the current mouse position
+canvas.addEventListener('mousemove', (e) => {
+    if (drawing && e.buttons === 1) { // Check if the left mouse button is pressed
+        ctx.lineTo(e.offsetX, e.offsetY); // Draw a line to the current mouse position
         ctx.stroke(); // Render the line
     }
 });
@@ -29,18 +30,17 @@ canvas.addEventListener('mousemove', (mouse) => {
 // Stop drawing
 canvas.addEventListener('mouseup', () => {
     if (drawing) {
-        isMouseDown = false;
         ctx.closePath(); // Close the current path
     }
 });
 
-// Stop drawing when the mouse leaves the canvas
-canvas.addEventListener('mouseleave', () => {
-    if (drawing && isMouseDown) {
-        isMouseDown = false;
-        ctx.closePath(); // Close the current path
-    }
-});
+// // Stop drawing when the mouse leaves the canvas
+// canvas.addEventListener('mouseleave', () => {
+//     if (drawing) {
+//         ctx.closePath(); // Close the current path
+//     }
+// });
 
+// Optional: Set stroke style
 ctx.strokeStyle = 'black'; // Set the color of the stroke
 ctx.lineWidth = 2; // Set the width of the stroke
