@@ -24,10 +24,10 @@ canvas.addEventListener('mousedown', (mouse) => {
         ctx.beginPath(); 
         ctx.moveTo(mouse.offsetX, mouse.offsetY); 
     }
-    // if (erasing) {
-    //     isMouseDown = true;
-    //     ctx.clearRect(mouse.offsetX, mouse.offsetY, 10, 10); // Erase a small square at the mouse position
-    // }
+    if (erasing) {
+        isMouseDown = true;
+        ctx.clearRect(mouse.offsetX, mouse.offsetY, 10, 10); 
+    }
 });
 
 // Draws the line
@@ -36,9 +36,9 @@ canvas.addEventListener('mousemove', (mouse) => {
         ctx.lineTo(mouse.offsetX, mouse.offsetY); 
         ctx.stroke(); 
     }
-    // if (erasing && isMouseDown) {
-    //     ctx.clearRect(mouse.offsetX, mouse.offsetY, 10, 10); // Erase a small square at the current mouse position
-    // }
+    if (erasing && isMouseDown) {
+        ctx.clearRect(mouse.offsetX, mouse.offsetY, 10, 10); 
+    }
 });
 
 // Stop drawing
@@ -47,9 +47,9 @@ canvas.addEventListener('mouseup', () => {
         isMouseDown = false;
         ctx.closePath(); 
     }
-    // if (erasing) {
-    //     isMouseDown = false;
-    // }
+    if (erasing) {
+        isMouseDown = false;
+    }
 });
 
 // Stop drawing when the mouse leaves the canvas
@@ -58,23 +58,23 @@ canvas.addEventListener('mouseleave', () => {
         isMouseDown = false;
         ctx.closePath(); 
     }
-    // if (erasing && isMouseDown) {
-    //     isMouseDown = false;
-    // }
+    if (erasing && isMouseDown) {
+        isMouseDown = false;
+    }
 });
 
 // Clears the canvas
-// clearButton.addEventListener('click', () => {
-//     ctx.clearRect(0, 0, canvas.width, canvas.height); 
-// });
+clearButton.addEventListener('click', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+});
 
 // Toggle erase mode
-// eraseButton.addEventListener('click', () => {
-//     erasing = !erasing;
-//     if (erasing) {
-//         drawing = false; // Disable drawing mode when erasing mode is active
-//     }
-// });
+eraseButton.addEventListener('click', () => {
+    erasing = !erasing;
+    if (erasing) {
+        drawing = false; // Disable drawing mode when erasing mode is active
+    }
+});
 
 ctx.strokeStyle = 'black'; // Set the color of the stroke
 ctx.lineWidth = 2; // Set the width of the stroke
