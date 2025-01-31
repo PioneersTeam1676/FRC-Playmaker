@@ -12,6 +12,35 @@ let erasing = false;
 canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
 
+// Function to get the mouse position relative to the canvas
+function getMousePos(canvas, evt) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+        x: (evt.clientX - rect.left) * (canvas.width / rect.width),
+        y: (evt.clientY - rect.top) * (canvas.height / rect.height)
+    };
+}
+
+// Function to resize the canvas and adjust the drawing coordinates
+function resizeCanvas() {
+    const container = document.getElementById('frc-playmaker-container');
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = canvas.width;
+    tempCanvas.height = canvas.height;
+    const tempCtx = tempCanvas.getContext('2d');
+    tempCtx.drawImage(canvas, 0, 0);
+
+    canvas.width = container.clientWidth;
+    canvas.height = container.clientHeight;
+    ctx.drawImage(tempCanvas, 0, 0);
+}
+
+// Initial canvas size
+resizeCanvas();
+
+// Resize canvas on window resize
+window.addEventListener('resize', resizeCanvas);
+
 // Toggle drawing mode
 toggleDrawButton.addEventListener('click', () => {
     drawing = !drawing; // Toggle the drawing state
@@ -29,25 +58,27 @@ eraseButton.addEventListener('click', () => {
 
 // Draws on the canvas
 canvas.addEventListener('mousedown', (mouse) => {
+    const pos = getMousePos(canvas, mouse);
     if (drawing) {
         isMouseDown = true;
         ctx.beginPath(); // Start a new path
-        ctx.moveTo(mouse.offsetX, mouse.offsetY); // Move to the mouse position
+        ctx.moveTo(pos.x, pos.y); // Move to the mouse position
     }
     if (erasing) {
          isMouseDown = true;
-         ctx.clearRect(mouse.offsetX, mouse.offsetY, 10, 10); // Erase a small square at the mouse position
+         ctx.clearRect(pos.x, pos.y, 20, 20); // Erase a small square at the mouse position
     }
 });
 
 // Draws the line
 canvas.addEventListener('mousemove', (mouse) => {
+    const pos = getMousePos(canvas, mouse);
     if (drawing && isMouseDown) { // Check if the left mouse button is pressed
-        ctx.lineTo(mouse.offsetX, mouse.offsetY); // Draw a line to the current mouse position
+        ctx.lineTo(pos.x, pos.y); // Draw a line to the current mouse position
         ctx.stroke(); // Render the line
     }
     if (erasing && isMouseDown) {
-         ctx.clearRect(mouse.offsetX, mouse.offsetY, 10, 10); // Erase a small square at the current mouse position
+         ctx.clearRect(pos.x, pos.y, 10, 10); // Erase a small square at the current mouse position
     }   
 });
 
