@@ -112,6 +112,5 @@ canvas.addEventListener('mouseleave', () => {
 //     }
 // });
 
-// Optional: Set stroke style
 ctx.strokeStyle = 'black'; // Set the color of the stroke
 ctx.lineWidth = 2; // Set the width of the stroke
