@@ -1,7 +1,7 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-const toggleDrawButton = document.getElementById('paintbrush-img');
-const clearButton = document.getElementById('clearCanvas');
+const toggleDrawButton = document.getElementById('/images/paintbrush-img');
+const clearButton = document.getElementById('/clearCanvas');
 const eraseButton = document.getElementById('eraser-img');
 
 let drawing = false;
