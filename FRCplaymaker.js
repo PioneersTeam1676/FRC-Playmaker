@@ -26,7 +26,6 @@ toggleDrawButton.addEventListener('click', () => {
     drawing = !drawing; // Toggle the drawing state
     erasing = false; // Won't draw and erase simultaneously
     console.log("draw clicked");
-    //toggleDrawButton.textContent = drawing ? 'Stop Drawing' : 'Start Drawing'; // Update button text
 });
 
 // Toggle erasing mode
@@ -80,14 +79,6 @@ canvas.addEventListener('mouseleave', () => {
 // Clears the canvas
 // clearButton.addEventListener('click', () => {
 //     ctx.clearRect(0, 0, canvas.width, canvas.height); 
-// });
-
-// Toggle erase mode
-// eraseButton.addEventListener('click', () => {
-//     erasing = !erasing;
-//     if (erasing) {
-//         drawing = false; // Disable drawing mode when erasing mode is active
-//     }
 // });
 
 ctx.strokeStyle = 'black'; // Set the color of the stroke
