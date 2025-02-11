@@ -30,9 +30,13 @@ function resizeCanvas() {
     const tempCtx = tempCanvas.getContext('2d');
     tempCtx.drawImage(canvas, 0, 0);
 
+    const widthRatio = container.clientWidth / canvas.width;
+    const heightRatio = container.clientHeight / canvas.height;
+
     canvas.width = container.clientWidth;
     canvas.height = container.clientHeight;
-    ctx.drawImage(tempCanvas, 0, 0);
+
+    ctx.drawImage(tempCanvas, 0, 0, tempCanvas.width, tempCanvas.height, 0, 0, canvas.width, canvas.height);
 }
 
 // Initial canvas size
