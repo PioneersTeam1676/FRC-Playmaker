@@ -21,31 +21,6 @@ function getMousePos(canvas, evt) {
     };
 }
 
-// Function to resize the canvas and adjust the drawing coordinates
-function resizeCanvas() {
-    const container = document.getElementById('frc-playmaker-container');
-    const tempCanvas = document.createElement('canvas');
-    tempCanvas.width = canvas.width;
-    tempCanvas.height = canvas.height;
-    const tempCtx = tempCanvas.getContext('2d');
-    tempCtx.drawImage(canvas, 0, 0);
-
-    const aspectRatio = canvas.width / canvas.height;
-    const newWidth = container.clientWidth;
-    const newHeight = newWidth / aspectRatio;
-
-    canvas.width = newWidth;
-    canvas.height = newHeight;
-
-    ctx.drawImage(tempCanvas, 0, 0, tempCanvas.width, tempCanvas.height, 0, 0, canvas.width, canvas.height);
-}
-
-// Initial canvas size
-resizeCanvas();
-
-// Resize canvas on window resize
-window.addEventListener('resize', resizeCanvas);
-
 // Toggle drawing mode
 toggleDrawButton.addEventListener('click', () => {
     drawing = !drawing; // Toggle the drawing state
@@ -96,12 +71,10 @@ canvas.addEventListener('mouseup', () => {
 
 // Stop drawing when the mouse leaves the canvas
 canvas.addEventListener('mouseleave', () => {
-    
     isMouseDown = false;
     if (drawing){
         ctx.closePath(); // Close the current path
     }
-    
 });
 
 // Clears the canvas
