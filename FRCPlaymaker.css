@@ -1,18 +1,20 @@
 .frc-playmaker-container {
-
     display: flex;
     height: 100vh;
-
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .drawing-panel {
-
-
     background-color: red;
-    height: 50%;
     width: 100%;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
     display: inline;
-
+    position: relative;
 }
 
 #paintbrush-img {
