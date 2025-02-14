@@ -45,6 +45,17 @@
     background-color: yellow;
 }
 
+#clear-img {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 300px;
+    bottom: 0px;
+    margin: 20px;
+
+    background-color: orange;
+}
+
 #canvas {
     background-color: green;
     width: 100%;
