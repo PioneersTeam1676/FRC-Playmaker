@@ -1,7 +1,7 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const toggleDrawButton = document.getElementById('paintbrush-img');
-const clearButton = document.getElementById('/clearCanvas');
+const clearButton = document.getElementById('clear-img');
 const eraseButton = document.getElementById('eraser-img');
 
 let drawing = false;
@@ -77,9 +77,9 @@ canvas.addEventListener('mouseleave', () => {
 });
 
 // Clears the canvas
-// clearButton.addEventListener('click', () => {
-//     ctx.clearRect(0, 0, canvas.width, canvas.height); 
-// });
+clearButton.addEventListener('click', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+});
 
 ctx.strokeStyle = 'black'; // Set the color of the stroke
 ctx.lineWidth = 2; // Set the width of the stroke
