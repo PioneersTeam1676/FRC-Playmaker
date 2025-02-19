@@ -3,6 +3,7 @@ const ctx = canvas.getContext('2d');
 const toggleDrawButton = document.getElementById('paintbrush-img');
 const clearButton = document.getElementById('clear-img');
 const eraseButton = document.getElementById('eraser-img');
+const lineWidthSlider = document.getElementById('line-width-slider');
 
 let drawing = false;
 let isMouseDown = false;
@@ -41,11 +42,21 @@ canvas.addEventListener('mousedown', (mouse) => {
     if (drawing) {
         isMouseDown = true;
         ctx.beginPath(); // Start a new path
-        ctx.moveTo(pos.x, pos.y); // Move to the mouse position
+        ctx.arc(pos.x, pos.y, ctx.lineWidth / 2, 0, Math.PI * 2); // Draw a circle for the stroke
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(pos.x, pos.y);
     }
     if (erasing) {
-         isMouseDown = true;
-         ctx.clearRect(pos.x, pos.y, 20, 20); // Erase a small square at the mouse position
+        isMouseDown = true;
+        ctx.save(); // Save the current drawing state
+        ctx.globalCompositeOperation = 'destination-out'; // Set the composite operation to erase
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, ctx.lineWidth / 2, 0, Math.PI * 2); // Draw a circle for erasing
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(pos.x, pos.y);
+        ctx.restore(); // Restore the drawing state
     }
 });
 
@@ -55,9 +66,23 @@ canvas.addEventListener('mousemove', (mouse) => {
     if (drawing && isMouseDown) { // Check if the left mouse button is pressed
         ctx.lineTo(pos.x, pos.y); // Draw a line to the current mouse position
         ctx.stroke(); // Render the line
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, ctx.lineWidth / 2, 0, Math.PI * 2); // Draw a circle for the stroke
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(pos.x, pos.y);
     }
     if (erasing && isMouseDown) {
-         ctx.clearRect(pos.x, pos.y, 10, 10); // Erase a small square at the current mouse position
+        ctx.save(); // Save the current drawing state
+        ctx.globalCompositeOperation = 'destination-out'; // Set the composite operation to erase
+        ctx.lineTo(pos.x, pos.y); // Draw a line to the current mouse position
+        ctx.stroke(); // Render the line
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, ctx.lineWidth / 2, 0, Math.PI * 2); // Draw a circle for erasing
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(pos.x, pos.y);
+        ctx.restore(); // Restore the drawing state
     }   
 });
 
@@ -81,5 +106,10 @@ clearButton.addEventListener('click', () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height); 
 });
 
-ctx.strokeStyle = 'black'; // Set the color of the stroke
-ctx.lineWidth = 2; // Set the width of the stroke
+// Update line width based on slider value
+lineWidthSlider.addEventListener('input', () => {
+    ctx.lineWidth = lineWidthSlider.value;
+});
+
+ctx.strokeStyle = 'black'; 
+ctx.lineWidth = lineWidthSlider.value;
