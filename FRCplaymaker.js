@@ -1,8 +1,8 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-const toggleDrawButton = document.getElementById('paintbrush-img');
+const toggleDrawButton = document.getElementById('/images/paintbrush-img');
 const clearButton = document.getElementById('clear-img');
-const eraseButton = document.getElementById('eraser-img');
+const eraseButton = document.getElementById('/images/eraser-img');
 const lineWidthSlider = document.getElementById('line-width-slider');
 
 let drawing = false;
