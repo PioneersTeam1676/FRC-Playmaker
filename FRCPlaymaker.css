@@ -8,9 +8,9 @@
 }
 
 .drawing-panel {
-    background-color: red;
+    /* background-color: red; */
     width: 100%;
-    height: auto;
+    height: 75vh;
     max-height: 100%;
     max-width: 100%;
     display: block;
@@ -67,10 +67,18 @@
     width: 200px;
 }
 
-#canvas {
-    background-color: green;
+#field {
     width: 100%;
-    height: auto;
+    height: 75vh;
+    aspect-ratio: 3 / 1;
+    display: block;
+    
+}
+
+#canvas {
+    /* background-color: green; */
+    width: 100%;
+    height: 75vh;
     aspect-ratio: 3 / 1; /* Adjust the aspect ratio as needed */
     display: block;
     position: absolute;
