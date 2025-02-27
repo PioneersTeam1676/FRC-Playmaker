@@ -26,6 +26,19 @@ function getMousePos(canvas, evt) {
 toggleDrawButton.addEventListener('click', () => {
     drawing = !drawing; // Toggle the drawing state
     erasing = false; // Won't draw and erase simultaneously
+    document.getElementById('eraser-img').style.backgroundColor = "";
+    if (drawing)
+    {
+        //signifying the button is active
+        document.getElementById('paintbrush-img').style.backgroundColor = "rgba(0, 192, 255, 0.5)";
+        
+        console.log("drawing!");
+    }
+    else
+    {
+        document.getElementById('paintbrush-img').style.backgroundColor = "";
+
+    }
     console.log("draw clicked");
 });
 
@@ -33,6 +46,18 @@ toggleDrawButton.addEventListener('click', () => {
 eraseButton.addEventListener('click', () => {
     erasing = !erasing; // Toggle the erasing state
     drawing = false; // Won't draw and erase simultaneously
+    document.getElementById('paintbrush-img').style.backgroundColor = "";
+    if (erasing)
+    {
+        //signifying the button is active
+        document.getElementById('eraser-img').style.backgroundColor = "rgba(0, 192, 255, 0.5)";
+        
+    }
+    else
+    {
+        document.getElementById('eraser-img').style.backgroundColor = "";
+
+    }
     console.log("erase clicked");
 })
 

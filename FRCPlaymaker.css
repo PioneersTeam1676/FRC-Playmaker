@@ -26,10 +26,13 @@
     margin: 20px;
     /* right: 10 px; */
     /* bottom: 10 px; */
-
-    
-    background-color: blue;
+    /* background-color: blue; */
+    border: 1px solid;
 }
+#paintbrush-img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
+}
+
 
 #eraser-img {
     width: 100px;
@@ -40,9 +43,11 @@
     margin: 20px;
     /* right: 10 px; */
     /* bottom: 10 px; */
-
-    
-    background-color: yellow;
+    /* background-color: yellow; */
+    border: 1px solid;
+}
+#eraser-img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
 }
 
 #clear-img {
@@ -52,8 +57,12 @@
     left: 300px;
     bottom: 0px;
     margin: 20px;
+    border: 1px solid;
 
-    background-color: orange;
+    /* background-color: orange; */
+}
+#clear-img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
 }
 
 #slider-container {
@@ -72,6 +81,7 @@
     height: 75vh;
     aspect-ratio: 3 / 1;
     display: block;
+    /* background-color: green; */
     
 }
 
