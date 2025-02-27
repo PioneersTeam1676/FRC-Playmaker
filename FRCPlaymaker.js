@@ -76,6 +76,7 @@ canvas.addEventListener('mousedown', (mouse) => {
         isMouseDown = true;
         ctx.save(); // Save the current drawing state
         ctx.globalCompositeOperation = 'destination-out'; // Set the composite operation to erase
+        ctx.lineWidth = lineWidthSlider.value * 3;
         ctx.beginPath();
         ctx.arc(pos.x, pos.y, ctx.lineWidth / 2, 0, Math.PI * 2); // Draw a circle for erasing
         ctx.fill();
@@ -92,6 +93,7 @@ canvas.addEventListener('mousemove', (mouse) => {
         ctx.lineTo(pos.x, pos.y); // Draw a line to the current mouse position
         ctx.stroke(); // Render the line
         ctx.beginPath();
+        
         ctx.arc(pos.x, pos.y, ctx.lineWidth / 2, 0, Math.PI * 2); // Draw a circle for the stroke
         ctx.fill();
         ctx.beginPath();
@@ -100,6 +102,7 @@ canvas.addEventListener('mousemove', (mouse) => {
     if (erasing && isMouseDown) {
         ctx.save(); // Save the current drawing state
         ctx.globalCompositeOperation = 'destination-out'; // Set the composite operation to erase
+        ctx.lineWidth = lineWidthSlider.value * 3;
         ctx.lineTo(pos.x, pos.y); // Draw a line to the current mouse position
         ctx.stroke(); // Render the line
         ctx.beginPath();
